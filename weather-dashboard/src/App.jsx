@@ -42,7 +42,7 @@ function App() {
 
     try {
       const result = await fetch(
-        `http://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${location}&days=${days}&aqi=no&alerts=no`
+        `https://api.weatherapi.com/v1/forecast.json?key=${api_key}&q=${location}&days=${days}&aqi=no&alerts=no`
       );
       const data = await result.json();
       if (data.error) {
