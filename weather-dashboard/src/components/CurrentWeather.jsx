@@ -15,7 +15,7 @@ export default function CurrentWeather({ data, dayIndex = 0 }) {
     }, [dayIndex])
 
     return (
-        <div className="w-full md:w-2/3 p-4 overflow-y-auto border rounded bg-yellow-200">
+        <div className="w-full md:w-5/3 p-4 overflow-y-auto border rounded bg-blue-200">
             <h3 className="text-lg font-semibold">{dayData.date}- Hourly Forecast    </h3>
             <div className="flex flex-col gap-2 " ref={listRef}>
                 {dayData.hour.map((hour) => {
