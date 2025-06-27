@@ -1,5 +1,9 @@
 import { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
+import SearchPanel from './components/SearchPanel';
+import Intro from './components/Intro';
+import CurrentWeather from './components/CurrentWeather';
+import Forecast from './components/Forecast';
 import './App.css';
 
 
@@ -10,6 +14,7 @@ function App() {
   const [error, setError] = useState("");
   const [location, setLocation] = useState('London');
   const [days, setDays] = useState(3);
+  const [selectedDay, setSelectedDay] = useState(0);
   const api_key = import.meta.env.VITE_WEATHER_API_KEY;
   const fetchWeather = async () => {
 
@@ -20,10 +25,12 @@ function App() {
       const data = await result.json();
       if (data.error) {
         console.error("API Error: ", data.error.message);
+
         return;
       }
 
       setWeather(data);
+      console.log(data);
     } catch (error) {
       setError("Network error");
       setWeather(null);
@@ -40,48 +47,29 @@ function App() {
     <div className="min-h-screen bg-blue-50 text-gray-800">
       <Navbar />
 
-      <div className='mb-4'>
-        <form onSubmit={(e) => { e.preventDefault(); fetchWeather(location, days) }}>
-          <input type="text" placeholder="Enter Location" value={location} onChange={(e) => setLocation(e.target.value)} />
-          <input type="number" placeholder='Enter Number of days' value={days} onChange={(e) => setDays(e.target.value)} />
-          <button className="bg-blue-500 text-white w-full py-2 rounded hover:bg-blue-600" >Get Forecast</button>
-        </form>
-      </div>
-      {error && (
-        <div className="mb-4 text-red-600 font-semibold">{error}   </div>
-      )}
-      {weather && (
-        <div className="bg-white rounded shadow p-6 w-full max-w-md">
-          <h2 className="text-2xl font-semibold mb-2">
-            {weather.location.name}, {weather.location.country}
-          </h2>
-          <p className="mb-1">{weather.current.condition.text}</p>
-          <p className="text-lg font-bold">
-            {weather.current.temp_c}°C / {weather.current.temp_f}°F
-          </p>
+      <div className='w-full  px-6 py-6'>
+        <Intro />
+        <SearchPanel
+          location={location}
+          setLocation={setLocation}
+          days={days}
+          setDays={setDays}
+          onSearch={fetchWeather}
+        />
 
-          <h3 className="mt-6 mb-2 font-semibold">{days} Forecast</h3>
-          <div className="grid grid-cols-2 gap-4">
-            {weather.forecast.forecastday.map((day) => (
-              <div
-                key={day.date}
-                className="border rounded p-2 bg-blue-100 text-center"
-              >
-                <div>{day.date}</div>
-                <img
-                  src={`https:${day.day.condition.icon}`}
-                  alt={day.day.condition.text}
-                  className="mx-auto"
-                />
-                <div>{day.day.condition.text}</div>
-                <div>
-                  {day.day.avgtemp_c}°C / {day.day.avgtemp_f}°F
-                </div>
-              </div>
-            ))}
+        {weather && (
+          <div>
+            <div>
+              <h1 className='text-3xl text-center font-bold justify-center p-4 mb-5'>{weather.location.name}, {weather.location.country}</h1>
+            </div>
+            <div className='flex flex-col md:flex-row gap-4'>
+
+              <CurrentWeather data={weather.forecast.forecastday} dayIndex={selectedDay} />
+              <Forecast forecast={weather.forecast.forecastday} onSelect={(index) => setSelectedDay(index)} />
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
