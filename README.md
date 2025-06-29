@@ -19,22 +19,22 @@ A modern weather dashboard built using **React**, **Vite**, and **Tailwind CSS**
 ##  Project Structure
 ```
 weather-dashboard-react/
-├── public/ # Static assets (optional)
-├── src/
-│ ├── components/ # Reusable components (Navbar, SearchPanel, etc.)
-│ ├── App.jsx # Main application component
-│ ├── main.jsx # Entry point
-│ ├── index.css
-│ └── ...
-├── .env # API key (not committed to Git)
-├── .gitignore
-├── package.json
-├── vite.config.js
+├── weather-dashboard
+|   ├── public/ # Static assets (optional)
+|   ├── src/
+|   │ ├── components/ # Reusable components (Navbar, SearchPanel, etc.)
+|   │ ├── App.jsx # Main application component
+|   │ ├── main.jsx # Entry point
+|   │ ├── index.css
+|   │ └── ...
+|   ├── .env # API key (not committed to Git)
+|   ├── .gitignore
+|   ├── package.json
+|    ├── vite.config.js
+├──.gitignore
+├──LICENSCE
 └── README.md
 
-bash
-Copy
-Edit
 
 ```
 ##  Getting Started
@@ -69,6 +69,3 @@ Then open your browser and navigate to http://localhost:5173
 ```bash
 npm run build
 ```
-
-## Author
-Made with  by Selvam Dasari Gnanaprakash
