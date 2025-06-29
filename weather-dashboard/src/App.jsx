@@ -66,7 +66,7 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-blue-50 text-gray-800">
+    <div className="min-h-screen  bg-gradient-to-br from-indigo-100 to-cyan-100 ">
       <Navbar />
 
       <div className='max-w-6xl mx-auto  px-6 py-6'>

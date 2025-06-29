@@ -1,6 +1,6 @@
 function Navbar() {
     return (
-        <nav className="bg-blue-600 text-white px-6 py-4 shadow-md mx-auto">
+        <nav className="bg-gradient-to-br from-blue-600 to-cyan-600 text-white px-6 py-4 shadow- max-w-6xl mx-auto rounded">
             <div className="grid grid-cols-6">
                 <div className="col-start-1 col-span-2">
                     <h1 className="text-3xl font-bold">Weather Dashboard</h1>
