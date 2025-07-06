@@ -14,9 +14,9 @@ export default function SearchPanel({ location, setLocation, days, setDays, onSe
                 className="border px-4 py-2 rounded w-40"
                 value={days}
                 onChange={(e) => setDays(e.target.value)}
-                placeholder="Days(1-7)"
+                placeholder="Days(1-16)"
                 min={1}
-                max={7}
+                max={16}
 
             />
             <button className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-800">

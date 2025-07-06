@@ -1,21 +1,30 @@
+
 # Weather Dashboard - React
+A modern weather dashboard built using React, Vite, and Tailwind CSS, which fetches real-time weather data using the Open-Meteo API. This app displays hourly and multi-day forecasts based on the user's location or a searched city.
 
-A modern weather dashboard built using **React**, **Vite**, and **Tailwind CSS**, which fetches real-time weather data using the [WeatherAPI](https://www.weatherapi.com/). This app displays hourly and multi-day forecasts based on the user's location or a searched city.
 
-##  Features
+## Features
 
-- Current weather based on user's geolocation (fallback to London)
-- Live hourly forecast for the current day
+- Current weather based on user’s geolocation (fallback to London)
+
+- Hourly forecast for the current day
+
 - 1–7 day forecast selection
-- Dynamic search by location and forecast range
-- Responsive and clean UI built with Tailwind CSS
-- Environment variables for API key security
-- Built with modern React stack and Vite for fast development
 
-##  Live Demo
+- Search weather by city or coordinates
 
-[Click to open live demo](https://weather-forecast-g4wg.onrender.com) 
-- Note: The server may take a minute or two to wake up if it has been idle, as Render puts it to sleep after 15 minutes of inactivity. Thanks for your patience!
+- Responsive design using Tailwind CSS
+
+- No API key or registration required
+
+- Built with React, Vite, and Open-Meteo API
+
+
+## Live Demo
+
+[Click to open live demo]()
+
+
 
 ##  Project Structure
 ```
@@ -53,13 +62,9 @@ cd weather-dashboard-react
 npm install
 ```
 
-### 3. Set Up Environment Variables
-Create a .env file in the root directory and add your WeatherAPI key:
-```env
-VITE_WEATHER_API_KEY=your_api_key_here
 ```
 
-### 4. Run the App Locally
+### 3. Run the App Locally
 ```bash
 
 npm run dev
@@ -70,3 +75,11 @@ Then open your browser and navigate to http://localhost:5173
 ```bash
 npm run build
 ```
+## Notes
+- Weather data is sourced from the free and open Open-Meteo API, which requires no API key, registration, or credit card.
+
+- This app respects Open-Meteo’s fair use policy (max 10,000 requests/day for non-commercial use).
+
+- Please provide attribution when using the data: "Weather data provided by Open-Meteo.com"
+
+
