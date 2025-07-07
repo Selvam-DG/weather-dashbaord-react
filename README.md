@@ -6,7 +6,7 @@ A modern weather dashboard built using **React**, **Vite**, and **Tailwind CSS**
 
 - Current weather based on user's geolocation (fallback to London)
 - Live hourly forecast for the current day
-- 1–7 day forecast selection
+- 1–3 day forecast selection
 - Dynamic search by location and forecast range
 - Responsive and clean UI built with Tailwind CSS
 - Environment variables for API key security
@@ -14,7 +14,7 @@ A modern weather dashboard built using **React**, **Vite**, and **Tailwind CSS**
 
 ##  Live Demo
 
-[Click to open live demo](https://weather-forecast-g4wg.onrender.com) 
+[Click to open live demo](https://weather-forecast-two-eosin.vercel.app/) 
 - Note: The server may take a minute or two to wake up if it has been idle, as Render puts it to sleep after 15 minutes of inactivity. Thanks for your patience!
 
 ##  Project Structure
