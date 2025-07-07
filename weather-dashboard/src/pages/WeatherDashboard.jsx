@@ -7,25 +7,23 @@ function WeatherDashboard() {
 
   const [weather, setWeather] = useState(null);
   const [error, setError] = useState("");
-  const [location, setLocation] = useState('');
-  const [ coords, setCoords ] = useState({lat:52.52, lon:13.41}); // default to Berlin
-
+  const [location, setLocation] = useState(localStorage.getItem('locationName') || '');
  
-
-
-  // Load Coords and fetch
-  useEffect( () => {
-    const storedCoords = localStorage.getItem('weatherCoords');
-    if (storedCoords){
-      const {lat, lon } = JSON.parse(storedCoords);
-      setCoords( { lat, lon});
-    }
-  }, [])
-
-    // 2) Whenever coords change, re-fetch weather
   useEffect(() => {
-    fetchWeather(coords);
-  }, [coords]);
+    const storedCoords = localStorage.getItem('weatherCoords');
+    if (storedCoords) {
+      const { lat, lon } = JSON.parse(storedCoords);
+      fetchWeather({ lat, lon });
+    } else {
+      // fallback to Berlin
+      const lat = 52.52;
+      const lon = 13.41;
+      fetchWeather({ lat, lon });
+    }
+  }, []);
+
+
+
 
 
 
@@ -38,6 +36,7 @@ function WeatherDashboard() {
 
       const result = await fetch(url);
       const data = await result.json();
+    
       if (!data || !data.current_weather) {
         setError("Weather Data not available");
         setWeather(null);
