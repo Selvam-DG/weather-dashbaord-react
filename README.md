@@ -9,7 +9,7 @@ A modern weather dashboard built using React, Vite, and Tailwind CSS, which fetc
 
 - Hourly forecast for the current day
 
-- 1–7 day forecast selection
+- 1–3 day forecast selection
 
 - Search weather by city or coordinates
 
@@ -22,7 +22,7 @@ A modern weather dashboard built using React, Vite, and Tailwind CSS, which fetc
 
 ## Live Demo
 
-[Click to open live demo]()
+[Click to open live demo](https://weather-forecast-two-eosin.vercel.app/)
 
 
 
