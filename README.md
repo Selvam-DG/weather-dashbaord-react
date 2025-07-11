@@ -22,7 +22,7 @@ A modern weather dashboard built using React, Vite, and Tailwind CSS, which fetc
 
 ## Live Demo
 
-[Click to open live demo](https://weather-forecast-two-eosin.vercel.app/)
+[Click to open live demo](https://weather-om.vercel.app/)
 
 
 
