@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import CurrentWeather from '../components/CurrentWeather';
+import { getThemeClass } from "../utils/getThemeClass";
 
 
 
@@ -24,7 +25,7 @@ export default function Home(){
                 (position) => {
                     const lat = position.coords.latitude;
                     const lon = position.coords.longitude;
-                    localStorag.setItem("weatherCoords", JSON.stringify( {lat, lon}));
+                    localStorage.setItem("weatherCoords", JSON.stringify( {lat, lon}));
                     fetchWeather(lat, lon);
                 },
                 (error) => {
@@ -60,10 +61,18 @@ export default function Home(){
             setError("Failed to fetch Weather data")
             }
         }
+    let theme = { bg: 'bg-gray-100', text: 'text-gray-900' };
+
+    if (weather?.current_weather) {
+        const hour = new Date(weather.current_weather.time).getHours();
+        const code = weather.current_weather.weathercode;
+        theme = getThemeClass(code, hour);
+    }
     return (
-        <div className="mt-3 p-6 max-w-4xl mx-auto">
+        <div className={`min-h-screen ${theme.bg} ${theme.text}  transition-colors duration-300`}>
+        <div className=" p-6 max-w-4xl mx-auto">
             <h1 className="text-3xl font-bold mb-4 text-center">Welcome to Weather Dashboard</h1>
-            <p className="mb-6 text-gray-700">
+            <p className="mb-6 ">
                 This app provides accurate and fast weather forecasts powered by{" "}
                 <a
                 href="https://open-meteo.com/"
@@ -75,7 +84,7 @@ export default function Home(){
                 </a>
                 , a free weather API.
             </p>
-             <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-6">
+             <div className="border border-blue-200 p-4 rounded-lg mb-6">
                 <p>
                 We use your current location to provide hyperlocal weather forecasts.
                 If location access is denied, we’ll show Berlin’s weather instead.
@@ -83,7 +92,7 @@ export default function Home(){
             </div>
             {error && <p className="text-red-600 mb-4">{error}</p>}
             {weather ? (
-                <div className="bg-white shadow-lg rounded-lg p-6 mb-4 flex items-center justify-between">
+                <div className=" shadow-lg rounded-lg p-6 mb-4 flex items-center justify-between">
                     <div>
                        
                         < CurrentWeather data={weather} locationLabel={localStorage.getItem('locationName') || weather.timezone}/>
@@ -96,7 +105,11 @@ export default function Home(){
                     </button>
                 </div>
             ):(
-                <p>Loading current weather...</p>
+                <div className="flex items-center justify-center h-40">
+                    <div className="animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-blue-600"></div>
+                    <span className="ml-4 text-blue-700 font-semibold">Loading current weather...</span>
+                </div>
+
             )}
              <div className="mt-10 text-gray-500 text-sm">
                 <p>
@@ -104,7 +117,7 @@ export default function Home(){
                 </p>
             </div>
 
-
+            </div>
         </div>
     );
 

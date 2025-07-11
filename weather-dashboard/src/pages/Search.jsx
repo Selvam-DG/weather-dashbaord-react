@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 export default function Search() {
   const [location, setLocation] = useState('');
   const [error, setError] = useState('');
+  const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSearch = async () => {
     if (!location.trim()) return;
+    setLoading(true);
 
     try {
       // Geocode the entered city name
@@ -34,6 +36,8 @@ export default function Search() {
     } catch (err) {
       console.error('Search error:', err);
       setError('Failed to search location');
+    }finally{
+      setLoading(false);
     }
   };
 
@@ -41,6 +45,7 @@ export default function Search() {
     <div className="flex flex-col items-center justify-center h-80">
       <h1 className="text-2xl font-bold mb-4">Search Weather</h1>
       {error && <p className="text-red-600 mb-2">{error}</p>}
+      <label htmlFor="location" className="sr-only">City</label>
       <input
         type="text"
         value={location}
@@ -50,9 +55,10 @@ export default function Search() {
       />
       <button
         onClick={handleSearch}
-        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
+        className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 disabled:opacity-50"
+        disabled={loading}
       >
-        Search
+        {loading ? "Searching..." : "Search"}
       </button>
     </div>
   );
